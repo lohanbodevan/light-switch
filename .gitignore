@@ -83,3 +83,4 @@ dumps
 
 # Application
 instances.json
+.serverless

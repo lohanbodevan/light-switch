@@ -15,11 +15,7 @@ def start_instances(instances_id):
 
     log.info('Starting instances {}'.format(instances_id))
     try:
-        ec2 = boto3.client(
-                'ec2',
-                aws_access_key_id=os.environ.get('ACCESS_KEY'),
-                aws_secret_access_key=os.environ.get('ACCESS_SECRET'),
-                region_name=os.environ.get('REGION'))
+        ec2 = boto3.client('ec2', region_name=os.environ.get('REGION'))
         ec2.start_instances(InstanceIds=instances_id, DryRun=False)
         log.info('Instances started')
     except ClientError as e:
@@ -34,11 +30,7 @@ def stop_instances(instances_id):
 
     log.info('Stopping instances {}'.format(instances_id))
     try:
-        ec2 = boto3.client(
-                'ec2',
-                aws_access_key_id=os.environ.get('ACCESS_KEY'),
-                aws_secret_access_key=os.environ.get('ACCESS_SECRET'),
-                region_name=os.environ.get('REGION'))
+        ec2 = boto3.client('ec2', region_name=os.environ.get('REGION'))
         ec2.stop_instances(InstanceIds=instances_id, DryRun=False)
         log.info('Instances stopped')
     except ClientError as e:
@@ -55,11 +47,7 @@ def describe_instances():
         sys.exit(1)
 
     try:
-        ec2 = boto3.client(
-                'ec2',
-                aws_access_key_id=os.environ.get('ACCESS_KEY'),
-                aws_secret_access_key=os.environ.get('ACCESS_SECRET'),
-                region_name=os.environ.get('REGION'))
+        ec2 = boto3.client('ec2', region_name=os.environ.get('REGION'))
         return ec2.describe_instances(InstanceIds=instances_id, DryRun=False)
     except ClientError as e:
         log.error('Fail to describe instances. Error: '.format(e))
@@ -68,19 +56,3 @@ def describe_instances():
 
 def is_stopped(instance):
     return instance.get('State').get('Name') == 'stopped'
-
-
-if __name__ == "__main__":
-    response = describe_instances()
-    for res in response.get('Reservations'):
-        to_start = [i.get('InstanceId') for i in res.get('Instances') if is_stopped(i)]
-        to_stop = [i.get('InstanceId') for i in res.get('Instances') if not is_stopped(i)]
-
-    log.info('Instances to Stop {}'.format(to_stop))
-    log.info('Instances to Start {}'.format(to_start))
-
-    if to_start:
-        start_instances(to_start)
-
-    if to_stop:
-        stop_instances(to_stop)
