@@ -8,10 +8,9 @@ from light_switch.functions import (
 
 
 def handler(event, context):
-    response = describe_instances()
-    for res in response.get('Reservations'):
-        to_start = [i.get('InstanceId') for i in res.get('Instances') if is_stopped(i)]
-        to_stop = [i.get('InstanceId') for i in res.get('Instances') if not is_stopped(i)]
+    for reservation in response.get('Reservations'):
+        to_start = list(filter(lambda i: is_stopped(i), reservation))
+        to_stop = list(filter(lambda i: not is_stopped(i), reservation))
 
     log.info('Instances to Stop {}'.format(to_stop))
     log.info('Instances to Start {}'.format(to_start))
