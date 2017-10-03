@@ -23,7 +23,7 @@ functions:
     light_switch:
         environment:
             REGION: ${self:custom.region}
-        handler: app
+        handler: app.handler
         description: Light Switch Functions
         events:
             - schedule: 

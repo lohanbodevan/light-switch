@@ -7,7 +7,7 @@ from light_switch.functions import (
 )
 
 
-if __name__ == "__main__":
+def handler(event, context):
     response = describe_instances()
     for res in response.get('Reservations'):
         to_start = [i.get('InstanceId') for i in res.get('Instances') if is_stopped(i)]
@@ -21,3 +21,7 @@ if __name__ == "__main__":
 
     if to_stop:
         stop_instances(to_stop)
+
+
+if __name__ == "__main__":
+    handler(None, None)
