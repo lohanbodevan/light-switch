@@ -19,7 +19,7 @@ def start_instances(instances_id):
         ec2.start_instances(InstanceIds=instances_id, DryRun=False)
         log.info('Instances started')
     except ClientError as e:
-        log.error('Fail to stop instance. Error: '.format(e))
+        log.error('Fail to stop instance. Error: {}'.format(e))
         sys.exit(1)
 
 
@@ -34,7 +34,7 @@ def stop_instances(instances_id):
         ec2.stop_instances(InstanceIds=instances_id, DryRun=False)
         log.info('Instances stopped')
     except ClientError as e:
-        log.error('Fail to stop instance. Error: '.format(e))
+        log.error('Fail to stop instance. Error: {}'.format(e))
         sys.exit(1)
 
 
@@ -50,7 +50,7 @@ def describe_instances():
         ec2 = boto3.client('ec2', region_name=os.environ.get('REGION'))
         return ec2.describe_instances(InstanceIds=instances_id, DryRun=False)
     except ClientError as e:
-        log.error('Fail to describe instances. Error: '.format(e))
+        log.error('Fail to describe instances. Error: {}'.format(e))
         sys.exit(1)
 
 

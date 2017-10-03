@@ -8,9 +8,9 @@ provider:
     iamRoleStatements:
         - Effect: "Allow"
           Action:
-              - "ec2:Start"
-              - "ec2:Stop"
-              - "ec2:Describe"
+              - "ec2:Start*"
+              - "ec2:Stop*"
+              - "ec2:Describe*"
           Resource: "*"
 custom:
     defaultStage: prod
@@ -27,10 +27,10 @@ functions:
         description: Light Switch Functions
         events:
             - schedule: 
-                rate: cron(0 8 * * ? *)
+                rate: cron(0 11 * * ? *)
                 name: light_switch_morning_schedule
                 description: 'This schedule is responsible to turn on or turn off instances'
             - schedule: 
-                rate: cron(0 20 * * ? *)
+                rate: cron(0 23 * * ? *)
                 name: light_switch_night_schedule
                 description: 'This schedule is responsible to turn on or turn off instances'

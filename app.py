@@ -21,7 +21,3 @@ def handler(event, context):
 
     if to_stop:
         stop_instances(to_stop)
-
-
-if __name__ == "__main__":
-    handler(None, None)
