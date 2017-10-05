@@ -1,12 +1,11 @@
-# Light Switch <a href="https://travis-ci.org/lohanbodevan/light-switch"><img alt="Travis Status" src="https://travis-ci.org/lohanbodevan/light-switch.svg?branch=master"></a>
+# Light Switch <a href="https://travis-ci.org/lohanbodevan/light-switch"><img alt="Travis Status" src="https://travis-ci.org/lohanbodevan/light-switch.svg?branch=master"></a> [![Coverage Status](https://coveralls.io/repos/github/lohanbodevan/light-switch/badge.svg)](https://coveralls.io/github/lohanbodevan/light-switch)
 Toggle your [EC2](https://aws.amazon.com/ec2/) instance to start or stop without have to configure and mantain cron jobs.  
 The goal of this project is to provide some automation for instances that have to be turned on and turned off regularly.  
 This project is a simple [serverless](https://en.wikipedia.org/wiki/Serverless_computing) application prepread to run with [AWS Lambda](https://aws.amazon.com//lambda)  
 
 ## How it Works
 The application will look for instances ids in `instances.json` file. With these instances ids, the application will  
-get each instance state and change to the oposite. For example, if the instance state is `running` the application will change to `stopped`  
-based on a schedule previously configured.
+get each instance state and change to the oposite. For example, if the instance state is `running` the application will change to `stopped` based on a schedule previously configured.
 
 ## Cloud Services Available
 * AWS
