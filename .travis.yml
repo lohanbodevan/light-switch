@@ -3,6 +3,6 @@ python:
   - "3.6"
 install: make setup
 before_script: make lint
-script: make test
+script: make test-cov
 after_success:
   - coveralls
