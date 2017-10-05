@@ -1,4 +1,4 @@
-# Light Switch
+# Light Switch <a href="https://travis-ci.org/lohanbodevan/light-switch"><img alt="Travis Status" src="https://travis-ci.org/lohanbodevan/light-switch.svg?branch=master"></a>
 Toggle your [EC2](https://aws.amazon.com/ec2/) instance to start or stop without have to configure and mantain cron jobs.  
 The goal of this project is to provide some automation for instances that have to be turned on and turned off regularly.  
 This project is a simple [serverless](https://en.wikipedia.org/wiki/Serverless_computing) application prepread to run with [AWS Lambda](https://aws.amazon.com//lambda)  
