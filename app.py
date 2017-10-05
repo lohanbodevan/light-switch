@@ -12,11 +12,11 @@ def handler(event, context):
     to_stop = None
 
     for reservation in describe():
-        to_start = list(filter(lambda i: is_stopped(i), reservation))
-        to_stop = list(filter(lambda i: not is_stopped(i), reservation))
+        stopped = filter(lambda i: is_stopped(i), reservation.get('Instances'))
+        to_start = list(map(lambda i: i.get('InstanceId'), stopped))
 
-    log.info('Instances to Stop {}'.format(to_stop))
-    log.info('Instances to Start {}'.format(to_start))
+        started = filter(lambda i: not is_stopped(i), reservation.get('Instances'))
+        to_stop = list(map(lambda i: i.get('InstanceId'), started))
 
     if to_start:
         start(to_start)
