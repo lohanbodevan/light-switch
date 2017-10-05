@@ -1,4 +1,6 @@
 boto3==1.4.7
 moto==1.1.21
 pytest==3.2.2
+pytest-cov==2.5.1
+flake8==3.4.1
 -e .
