@@ -13,10 +13,10 @@ def handler(event, context):
 
     for reservation in describe():
         stopped = filter(lambda i: is_stopped(i), reservation.get('Instances'))
-        to_start = list(map(lambda i: i.get('InstanceId'), stopped))
+        to_start += list(map(lambda i: i.get('InstanceId'), stopped))
 
         started = filter(lambda i: not is_stopped(i), reservation.get('Instances'))
-        to_stop = list(map(lambda i: i.get('InstanceId'), started))
+        to_stop += list(map(lambda i: i.get('InstanceId'), started))
 
     if to_start:
         start(to_start)
