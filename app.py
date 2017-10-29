@@ -8,8 +8,8 @@ from light_switch.functions import (
 
 
 def handler(event, context):
-    to_start = None
-    to_stop = None
+    to_start = []
+    to_stop = []
 
     for reservation in describe():
         stopped = filter(lambda i: is_stopped(i), reservation.get('Instances'))

@@ -27,10 +27,10 @@ functions:
         description: Light Switch Functions
         events:
             - schedule: 
-                rate: cron(0 11 * * ? *)
+                rate: cron(0 10 * * ? *)
                 name: light_switch_morning_schedule
                 description: 'This schedule is responsible to turn on or turn off instances'
             - schedule: 
-                rate: cron(0 23 * * ? *)
+                rate: cron(0 22 * * ? *)
                 name: light_switch_night_schedule
                 description: 'This schedule is responsible to turn on or turn off instances'
