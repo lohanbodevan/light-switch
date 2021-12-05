@@ -83,4 +83,5 @@ dumps
 
 # Application
 instances.json
+rds_instances.json
 .serverless
