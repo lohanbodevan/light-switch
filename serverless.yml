@@ -11,6 +11,9 @@ provider:
               - "ec2:Start*"
               - "ec2:Stop*"
               - "ec2:Describe*"
+              - "rds:Start*"
+              - "rds:Stop*"
+              - "rds:DescribeDBInstances"
           Resource: "*"
 custom:
     defaultStage: prod
